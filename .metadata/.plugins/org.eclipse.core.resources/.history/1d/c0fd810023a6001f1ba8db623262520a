@@ -1,0 +1,20 @@
+package Project_2024;
+
+class Lotto_System {
+	static int getPrizeAmount(int rank) {
+	    switch (rank) {
+	        case 1:
+	            return 100000000; // 1억
+	        case 2:
+	            return (int) (Math.random() * 10000000) + 20000000; // 2000만~3000만
+	        case 3:
+	            return (int) (Math.random() * 1000000) + 7000000;  // 700만~800만
+	        case 4:
+	            return (int) (Math.random() * 1000000) + 2000000;  // 200만~300만
+	        case 5:
+	            return (int) (Math.random() * 400000) + 400000;   // 40만~80만
+	        default:
+	            return 0; // 낙첨
+	    }
+	}
+}

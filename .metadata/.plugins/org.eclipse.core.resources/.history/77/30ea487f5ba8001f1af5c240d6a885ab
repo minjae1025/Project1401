@@ -1,0 +1,7 @@
+package Project_2024;
+
+public class Logo_Print {
+	void Print() {
+		
+	}
+}
