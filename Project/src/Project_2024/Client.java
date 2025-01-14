@@ -11,6 +11,66 @@ class Client extends Save_Sys{
 		super(id, pw);
 	}
 	
+	// 게임 시작 후 메뉴
+	int gameMenu() throws InterruptedException { 
+		console_clear();
+		int menu = 0;
+		System.out.println("===========================================");
+		System.out.println("             Mirim Lotto Menu");
+		System.out.println("===========================================");
+		System.out.printf("                       금액 : %10d원\n", money);
+		System.out.println(" 1. 로또 구매");
+		System.out.println(" 2. 로또 당첨 내역");
+		System.out.println(" 3. 로또 통계");
+		System.out.println(" 4. 알바하기");
+		System.out.println(" 5. 메인 화면");
+		menu = InputMismatchTest();
+				
+		return menu;
+	}
+		
+	public void firstMenu() throws InterruptedException {
+		int menu = 0;
+		do {
+			if (money > 100000000 || money < 1000 || week >= 1000) {
+				if (end_check()) {
+					System.out.println("계속 진행하겠습니다.");
+					Thread.sleep(1500);
+				}
+				else {
+					if (realExit()) {
+						System.exit(0);
+					}
+					else {
+						firstMenu();
+					}
+				}
+				}
+			menu = gameMenu();
+			console_clear();
+			if (menu == 1) {
+				menuOne();
+			}
+			else if (menu == 2) {
+				menuTwo();
+			}
+			else if (menu == 3) {
+				stats();
+			}
+			else if (menu == 4) {
+				menuFour();
+			}
+			else if (menu == 5){
+				gameSave();
+				System.out.println("\n잠시 후 이동됩니다.");
+				Thread.sleep(1500);
+				console_clear();
+				game_start_menu();
+			}
+			console_clear();
+		} while (menu != 5);
+	}
+	
 	// 등수 책정 및 당첨 번호 생성
 	void rankCal(int num) {
 		prize_lotto = Lotto_System.prize_num_sel();
@@ -80,65 +140,9 @@ class Client extends Save_Sys{
 	}
 	
 	//게임 시작 후 첫번째 메뉴 선택
-	public void firstMenu() throws InterruptedException {
-		int menu = 0;
-		do {
-			if (money > 100000000 || money < 1000 || week >= 1000) {
-				if (end_check()) {
-					System.out.println("계속 진행하겠습니다.");
-					Thread.sleep(1500);
-				}
-				else {
-					if (realExit()) {
-						System.exit(0);
-					}
-					else {
-						firstMenu();
-					}
-				}
-			}
-			menu = gameMenu();
-			console_clear();
-			if (menu == 1) {
-				menuOne();
-			}
-			else if (menu == 2) {
-				menuTwo();
-			}
-			else if (menu == 3) {
-				stats();
-			}
-			else if (menu == 4) {
-				menuFour();
-			}
-			else if (menu == 5){
-				gameSave();
-				System.out.println("\n잠시 후 이동됩니다.");
-				Thread.sleep(1500);
-				console_clear();
-				game_start_menu();
-			}
-			console_clear();
-		} while (menu != 5);
-	}
 	
-	// 게임 시작 후 메뉴
-	int gameMenu() throws InterruptedException { 
-		console_clear();
-		int menu = 0;
-		System.out.println("===========================================");
-		System.out.println("             Mirim Lotto Menu");
-		System.out.println("===========================================");
-		System.out.printf("                       금액 : %10d원\n", money);
-		System.out.println(" 1. 로또 구매");
-		System.out.println(" 2. 로또 당첨 내역");
-		System.out.println(" 3. 로또 통계");
-		System.out.println(" 4. 알바하기");
-		System.out.println(" 5. 메인 화면");
-		menu = InputMismatchTest();
-			
-		return menu;
-	}
+	
+	
 	
 	
 	//로또 구매 메뉴
