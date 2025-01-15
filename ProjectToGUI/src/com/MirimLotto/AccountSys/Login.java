@@ -1,4 +1,4 @@
-package AccountSystem;
+package com.MirimLotto.AccountSys;
 
 import java.io.*;
 
