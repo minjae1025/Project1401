@@ -55,6 +55,7 @@ public class GameMenuFrame extends JFrame {
         menuPanel.refresh(this);
         revalidate();
         repaint();
+        menuPanel.endCheck();
 	}
 	
 	public void toBuy() {

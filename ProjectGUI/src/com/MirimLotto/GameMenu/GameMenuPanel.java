@@ -28,6 +28,7 @@ public class GameMenuPanel extends JPanel {
 		setBounds(100, 100, 800, 500);
 		setLayout(null);
 		
+		
 		JPanel LogoText = new JPanel();
 		LogoText.setBounds(0, 0, 800, 70);
 		LogoText.setBackground(new Color(128, 255, 128));
@@ -139,5 +140,45 @@ public class GameMenuPanel extends JPanel {
 		lblMoney.setBackground(new Color(255, 255, 255));
 		lblMoney.setFont(new Font("나눔고딕", Font.BOLD, 15));
 		lblMoney.setHorizontalAlignment(SwingConstants.RIGHT);
+		
+		
+	}
+	
+	void endCheck() {
+		if (user.getMoney() > 100000000) {
+			int num = JOptionPane.showConfirmDialog(this, "축하드립니다! 1억을 모으셨습니다! 게임을 계속해서 진행하시겠습니까?", "성공 엔딩", JOptionPane.YES_NO_OPTION);
+			if (num == 1) {
+				int exit = JOptionPane.showConfirmDialog(this, "게임을 정말 종료하시겠습니까?", "게임 종료", JOptionPane.YES_NO_OPTION);
+				if (exit == 0) {
+					user.gameSave();
+					System.exit(0);
+				}
+			}
+		}
+		else if (user.getMoney() < 1000) {
+			int num = JOptionPane.showConfirmDialog(this, "아쉽지만 이제 라면 살 돈도 없습니다... 파산 신청되었습니다... 초기화 후 다시 진행하시겠습니까?", "파산 엔딩", JOptionPane.YES_NO_OPTION);
+			if (num == 0) {
+				user.end_state[1]++;
+				user.moneySet(20000);
+				user.week = 1;
+			}
+			else {
+				int exit = JOptionPane.showConfirmDialog(this, "게임을 정말 종료하시겠습니까?", "게임 종료", JOptionPane.YES_NO_OPTION);
+				if (exit == 0) {
+					user.gameSave();
+					System.exit(0);
+				}
+			}
+		}
+		else if (user.week >= 1000) {
+			int num = JOptionPane.showConfirmDialog(this, "당신은 로또에 중독되었습니다. 1000회 이상 진행하셨습니다. 계속 진행하시겠습니까?", "중독 엔딩", JOptionPane.YES_NO_OPTION);
+			if (num == 1) {
+				int exit = JOptionPane.showConfirmDialog(this, "게임을 정말 종료하시겠습니까?", "게임 종료", JOptionPane.YES_NO_OPTION);
+				if (exit == 0) {
+					user.gameSave();
+					System.exit(0);
+				}
+			}
+		}
 	}
 }

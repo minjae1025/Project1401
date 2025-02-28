@@ -55,6 +55,10 @@ public class User {
 		money += num;
 	}
 	
+	public void moneySet(int num) {
+		money = num;
+	}
+	
 	static int getPrizeAmount(int rank) {
 	    switch (rank) {
 	        case 1:
